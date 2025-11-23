@@ -30,7 +30,7 @@ Dalam simulasi ini, pengguna akan memasukkan perintah awal dan kemudian akan dii
 Add task    ##Perintah untuk menambah list tugas
 Buat program untuk simulasi ATM sederhana
 12S1103
-Pemrograman Lanjutan
+ LanjutanPemrograman
 Dr. Emily Watson
 4 November 2023, pukul 15.00 WIB
 12S22005_ButetMarpaung_PemrogramanLanjutan

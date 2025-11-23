@@ -2,13 +2,12 @@
 <flowgorithm fileversion="4.2">
     <attributes>
         <attribute name="name" value="TLAST"/>
-        <attribute name="authors" value="Advan"/>
+        <attribute name="authors" value="Christofer"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2025-11-21 09.49.58 AM"/>
-        <attribute name="created" value="QWR2YW47REVTS1RPUC1LMlM2TkRVOzIwMjUtMTEtMjE7MDguMTMuNTcgQU07MjgwOQ=="/>
-        <attribute name="edited" value="QWR2YW47REVTS1RPUC1LMlM2TkRVOzIwMjUtMTEtMjE7MDguNDIuMTggQU07MztqdWxpdTtLQUlTQVI7MjAyMy0xMS0yMTswODo1MDozNiBQTTtFMDQuZnByZzs1OTU2"/>
-        <attribute name="edited" value="QWR2YW47REVTS1RPUC1LMlM2TkRVOzIwMjUtMTEtMjE7MDkuNDQuMDUgQU07NTtqdWxpdTtLQUlTQVI7MjAyMy0xMS0yMTswODo1MDozNiBQTTtFMDQgKDEpLmZwcmc7NjExOQ=="/>
-        <attribute name="edited" value="QWR2YW47REVTS1RPUC1LMlM2TkRVOzIwMjUtMTEtMjE7MDkuNDkuNTggQU07MTsyOTI4"/>
+        <attribute name="saved" value="2025-11-21 08:58:37 AM"/>
+        <attribute name="created" value="Q2hyaXN0b2ZlcjtMQVBUT1AtQ0wxRTkyOUM7MjAyNS0xMS0yMTswODoyMDo1NiBBTTszMzE0"/>
+        <attribute name="edited" value="Q2hyaXN0b2ZlcjtMQVBUT1AtQ0wxRTkyOUM7MjAyNS0xMS0yMTswODo0NDo1MSBBTTs2O2p1bGl1O0tBSVNBUjsyMDIzLTExLTIxOzA4OjUwOjM2IFBNO0UwNC5mcHJnOzY0NjY="/>
+        <attribute name="edited" value="Q2hyaXN0b2ZlcjtMQVBUT1AtQ0wxRTkyOUM7MjAyNS0xMS0yMTswODo1ODozNyBBTTsxOzM0MzI="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -22,23 +21,23 @@
             <call expression="inisialisasi(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, tingkatkesulitan, harihinggadeadline, status, prioritas, teks)"/>
             <for variable="i" start="0" end="9" direction="inc" step="1">
                 <input variable="task"/>
-                <if expression="task==&quot;addtask&quot;">
+                <if expression="task == &quot;Add task&quot;">
                     <then>
-                        <assign variable="n" expression="addtask(deskripsitugas,kodematkul,matkul,dosen,deadline,nimnama,tingkatkesulitan,harihinggadeadline,status,prioritas,teks,i,n)"/>
+                        <assign variable="n" expression="Addtask(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, tingkatkesulitan, harihinggadeadline, status, prioritas, teks, i, n)"/>
                     </then>
                     <else>
-                        <if expression="task==&quot;update task status&quot;">
+                        <if expression="task == &quot;Update task status&quot;">
                             <then>
-                                <call expression="updatetaskstatus(kodematkul,status,n)"/>
-                                <assign variable="i" expression="i-1"/>
+                                <call expression="Updatestatus(kodematkul, status, n)"/>
+                                <assign variable="i" expression="i - 1"/>
                             </then>
                             <else>
-                                <if expression="task=&quot;show assignment&quot;">
+                                <if expression="task == &quot;Show assigment&quot;">
                                     <then>
-                                        <assign variable="i" expression="i-1"/>
+                                        <assign variable="i" expression="i - 1"/>
                                     </then>
                                     <else>
-                                        <if expression="task=&quot;---&quot;">
+                                        <if expression="task = &quot;---&quot;">
                                             <then>
                                                 <assign variable="i" expression="10"/>
                                             </then>
@@ -55,22 +54,21 @@
             <call expression="output(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, status, prioritas, teks, n)"/>
         </body>
     </function>
-    <function name="addtask" type="Integer" variable="n">
+    <function name="Addtask" type="Integer" variable="n">
         <parameters>
             <parameter name="deskripsitugas" type="String" array="True"/>
             <parameter name="kodematkul" type="String" array="True"/>
             <parameter name="matkul" type="String" array="True"/>
             <parameter name="dosen" type="String" array="True"/>
             <parameter name="deadline" type="String" array="True"/>
-            <parameter name="deaedline" type="String" array="True"/>
             <parameter name="nimnama" type="String" array="True"/>
             <parameter name="tingkatkesulitan" type="Real" array="True"/>
             <parameter name="harihinggadeadline" type="Integer" array="True"/>
             <parameter name="status" type="String" array="True"/>
             <parameter name="prioritas" type="Real" array="True"/>
             <parameter name="teks" type="String" array="True"/>
-            <parameter name="n" type="Integer" array="False"/>
             <parameter name="i" type="Integer" array="False"/>
+            <parameter name="n" type="Integer" array="False"/>
         </parameters>
         <body>
             <input variable="deskripsitugas[i]"/>
@@ -82,20 +80,20 @@
             <input variable="tingkatkesulitan[i]"/>
             <input variable="harihinggadeadline[i]"/>
             <input variable="status[i]"/>
-            <assign variable="prioritas[i]" expression="tingkatkesulitan[i]*(1.0/harihinggadeadline[i])"/>
-            <if expression="prioritas[i]&gt;3">
+            <assign variable="prioritas[i]" expression="tingkatkesulitan[i] * (1.0/harihinggadeadline[i])"/>
+            <if expression="prioritas[i] &gt; 3">
                 <then>
-                    <assign variable="teks[i]" expression="&quot;penting!andaharusmengerjakantugasinisegera&quot;"/>
+                    <assign variable="teks[i]" expression="&quot;Penting! Anda harus mengerjakan tugas ini segera&quot;"/>
                 </then>
                 <else>
-                    <if expression="priotitas[i]&lt;=3&amp;&amp;prioritas[i]&gt;=1.5">
+                    <if expression="prioritas[i] &lt;= 3 &amp;&amp; prioritas[i] &gt;= 1.5">
                         <then>
-                            <assign variable="teks[i]" expression="&quot;tugasi ini memiliki prioritas menengah&quot;"/>
+                            <assign variable="teks[i]" expression="&quot;Tugas ini memiliki prioritas menengah&quot;"/>
                         </then>
                         <else>
-                            <if expression="prioritas[i]&lt;1.5">
+                            <if expression="prioritas[i] &lt; 1.5">
                                 <then>
-                                    <assign variable="teks[i]" expression="&quot;tugas ini relatif ringan,namun jangan tunda terlalu lama&quot;"/>
+                                    <assign variable="teks[i]" expression="&quot;Tugas ini relatif ringan, namun jangan tunda terlalu lama&quot;"/>
                                 </then>
                                 <else>
                                     <assign variable="teks[i]" expression="&quot;---&quot;"/>
@@ -105,10 +103,10 @@
                     </if>
                 </else>
             </if>
-            <assign variable="n" expression="n+1"/>
+            <assign variable="n" expression="n + 1"/>
         </body>
     </function>
-    <function name="descending" type="None" variable="">
+    <function name="Descending" type="None" variable="">
         <parameters>
             <parameter name="deskripsitugas" type="String" array="True"/>
             <parameter name="kodematkul" type="String" array="True"/>
@@ -116,12 +114,12 @@
             <parameter name="dosen" type="String" array="True"/>
             <parameter name="deadline" type="String" array="True"/>
             <parameter name="nimnama" type="String" array="True"/>
-            <parameter name="tingkatkesulitan" type="String" array="True"/>
+            <parameter name="tingkatkesulitan" type="Real" array="True"/>
             <parameter name="harihinggadeadline" type="Integer" array="True"/>
             <parameter name="status" type="String" array="True"/>
             <parameter name="prioritas" type="Real" array="True"/>
             <parameter name="teks" type="String" array="True"/>
-            <parameter name="i" type="Integer" array="True"/>
+            <parameter name="i" type="Integer" array="False"/>
             <parameter name="n" type="Integer" array="False"/>
         </parameters>
         <body>
@@ -130,8 +128,8 @@
             <declare name="svtingkatkesulitan, svprioritas" type="Real" array="False" size=""/>
             <declare name="svharihinggadeadline" type="Integer" array="False" size=""/>
             <for variable="i" start="0" end="n-1" direction="inc" step="1">
-                <for variable="h" start="i+1" end="n-1" direction="inc" step="1">
-                    <if expression="priorita[i]&lt;prioritas[i]">
+                <for variable="h" start="i + 1" end="n - 1" direction="inc" step="1">
+                    <if expression="prioritas[i] &lt; prioritas[h]">
                         <then>
                             <assign variable="svdeskripsitugas" expression="deskripsitugas[h]"/>
                             <assign variable="deskripsitugas[h]" expression="deskripsitugas[i]"/>
@@ -173,7 +171,7 @@
             </for>
         </body>
     </function>
-    <function name="inisialisasi" type="None" variable="">
+    <function name="Inisialisasi" type="None" variable="">
         <parameters>
             <parameter name="deskripsitugas" type="String" array="True"/>
             <parameter name="kodematkul" type="String" array="True"/>
@@ -196,37 +194,37 @@
                 <assign variable="dosen[a]" expression="&quot;&quot;"/>
                 <assign variable="deadline[a]" expression="&quot;&quot;"/>
                 <assign variable="nimnama[a]" expression="&quot;&quot;"/>
-                <assign variable="tingkatkesulitan[a]" expression="&quot;&quot;"/>
-                <assign variable="harihinggadeadline[a]" expression="&quot;&quot;"/>
+                <assign variable="tingkatkesulitan[a]" expression="0"/>
+                <assign variable="harihinggadeadline[a]" expression="0"/>
                 <assign variable="status[a]" expression="&quot;&quot;"/>
-                <assign variable="prioritas[a]" expression="&quot;&quot;"/>
+                <assign variable="prioritas[a]" expression="0"/>
                 <assign variable="teks[a]" expression="&quot;&quot;"/>
             </for>
         </body>
     </function>
-    <function name="output" type="None" variable="">
+    <function name="Output" type="None" variable="">
         <parameters>
             <parameter name="deskripsitugas" type="String" array="True"/>
             <parameter name="kodematkul" type="String" array="True"/>
-            <parameter name="matkul" type="String" array="False"/>
-            <parameter name="dosen" type="String" array="False"/>
-            <parameter name="deadline" type="String" array="False"/>
-            <parameter name="nimnama" type="String" array="False"/>
-            <parameter name="status" type="String" array="False"/>
+            <parameter name="matkul" type="String" array="True"/>
+            <parameter name="dosen" type="String" array="True"/>
+            <parameter name="deadline" type="String" array="True"/>
+            <parameter name="nimnama" type="String" array="True"/>
+            <parameter name="status" type="String" array="True"/>
             <parameter name="prioritas" type="Real" array="True"/>
             <parameter name="teks" type="String" array="True"/>
             <parameter name="n" type="Integer" array="False"/>
         </parameters>
         <body>
             <declare name="i" type="Integer" array="False" size=""/>
-            <for variable="i" start="0" end="n-1" direction="inc" step="1">
-                <if expression="status[i]==&quot;selesai&quot;">
+            <for variable="i" start="0" end="n - 1" direction="inc" step="1">
+                <if expression="status[i] == &quot;Selesai&quot;">
                     <then>
-                        <output expression="&quot;prioritas:&quot;&amp;ToFixed(prioritas[i],2)" newline="True"/>
+                        <output expression="&quot;Prioritas: &quot; &amp;ToFixed(prioritas[i],2)" newline="True"/>
                         <output expression="deskripsitugas[i] &amp;&quot;|&quot; &amp;kodematkul[i] &amp;&quot;|&quot; &amp;matkul[i] &amp;&quot;|&quot; &amp;dosen[i] &amp;&quot;|&quot; &amp;nimnama[i] &amp;&quot;|&quot; &amp;status[i]" newline="True"/>
                     </then>
                     <else>
-                        <if expression="status[i]==&quot;belum selesai&quot;">
+                        <if expression="status[i] == &quot;Belum Selesai&quot;">
                             <then>
                                 <output expression="&quot;Prioritas: &quot; &amp;ToFixed(prioritas[i],2)" newline="True"/>
                                 <output expression="deskripsitugas[i] &amp;&quot;|&quot; &amp;kodematkul[i] &amp;&quot;|&quot; &amp;matkul[i] &amp;&quot;|&quot; &amp;dosen[i] &amp;&quot;|&quot; &amp;deadline[i] &amp;&quot;|&quot; &amp;nimnama[i] &amp;&quot;|&quot; &amp;status[i] &amp;&quot;|&quot; &amp;teks[i]" newline="True"/>
@@ -238,7 +236,7 @@
             </for>
         </body>
     </function>
-    <function name="updatetaskstatsus" type="None" variable="">
+    <function name="Updatestatus" type="None" variable="">
         <parameters>
             <parameter name="kodematkul" type="String" array="True"/>
             <parameter name="status" type="String" array="True"/>

@@ -1,4 +1,5 @@
-//Fenita Simbolon - 12S25017
+// Fenita Simbolon - 12S25017
+// Posman H.C. Sitinjak - 12S25048
 
 import java.util.*;
 import java.lang.Math;
@@ -17,14 +18,14 @@ public class TLAST {
         inisialisasi(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, tingkatkesulitan, harihinggadeadline, status, prioritas, teks);
         for (i = 0; i <= 9; i++) {
             task = input.nextLine();
-            if (task.equals("addtask")) {
+            if (task.equals("Add task")) {
                 n = addtask(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, tingkatkesulitan, harihinggadeadline, status, prioritas, teks, i, n);
             } else {
-                if (task.equals("update task status")) {
-                    updatetaskstatus(kodematkul, status, n);
+                if (task.equals("Update task status")) {
+                    updatestatus(kodematkul, status, n);
                     i = i - 1;
                 } else {
-                    if (task.equals("show assignment")) {
+                    if (task.equals("Show assigment")) {
                         i = i - 1;
                     } else {
                         if (task.equals("---")) {
@@ -38,7 +39,7 @@ public class TLAST {
         output(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, status, prioritas, teks, n);
     }
     
-    public static int addtask(String[] deskripsitugas, String[] kodematkul, String[] matkul, String[] dosen, String[] deadline, String[] deaedline, String[] nimnama, double[] tingkatkesulitan, int[] harihinggadeadline, String[] status, double[] prioritas, String[] teks, int n, int i) {
+    public static int addtask(String[] deskripsitugas, String[] kodematkul, String[] matkul, String[] dosen, String[] deadline, String[] nimnama, double[] tingkatkesulitan, int[] harihinggadeadline, String[] status, double[] prioritas, String[] teks, int i, int n) {
         deskripsitugas[i] = input.nextLine();
         kodematkul[i] = input.nextLine();
         matkul[i] = input.nextLine();
@@ -50,13 +51,13 @@ public class TLAST {
         status[i] = input.nextLine();
         prioritas[i] = tingkatkesulitan[i] * 1.0 / harihinggadeadline[i];
         if (prioritas[i] > 3) {
-            teks[i] = "penting!andaharusmengerjakantugasinisegera";
+            teks[i] = "Penting! Anda harus mengerjakan tugas ini segera";
         } else {
-            if (priotitas[i] <= 3 && prioritas[i] >= 1.5) {
-                teks[i] = "tugasi ini memiliki prioritas menengah";
+            if (prioritas[i] <= 3 && prioritas[i] >= 1.5) {
+                teks[i] = "Tugas ini memiliki prioritas menengah";
             } else {
                 if (prioritas[i] < 1.5) {
-                    teks[i] = "tugas ini relatif ringan,namun jangan tunda terlalu lama";
+                    teks[i] = "Tugas ini relatif ringan, namun jangan tunda terlalu lama";
                 } else {
                     teks[i] = "---";
                 }
@@ -67,7 +68,7 @@ public class TLAST {
         return n;
     }
     
-    public static void descending(String[] deskripsitugas, String[] kodematkul, String[] matkul, String[] dosen, String[] deadline, String[] nimnama, String[] tingkatkesulitan, int[] harihinggadeadline, String[] status, double[] prioritas, String[] teks, int[] i, int n) {
+    public static void descending(String[] deskripsitugas, String[] kodematkul, String[] matkul, String[] dosen, String[] deadline, String[] nimnama, double[] tingkatkesulitan, int[] harihinggadeadline, String[] status, double[] prioritas, String[] teks, int i, int n) {
         int h;
         String svdeskripsitugas, svkodematkul, svdosen, svdeadline, svnimnama, svstatus, svmatkul, svteks;
         double svtingkatkesulitan, svprioritas;
@@ -75,7 +76,7 @@ public class TLAST {
 
         for (i = 0; i <= n - 1; i++) {
             for (h = i + 1; h <= n - 1; h++) {
-                if (priorita[i] < prioritas[i]) {
+                if (prioritas[i] < prioritas[h]) {
                     svdeskripsitugas = deskripsitugas[h];
                     deskripsitugas[h] = deskripsitugas[i];
                     deskripsitugas[i] = svdeskripsitugas;
@@ -124,23 +125,23 @@ public class TLAST {
             dosen[a] = "";
             deadline[a] = "";
             nimnama[a] = "";
-            tingkatkesulitan[a] = "";
-            harihinggadeadline[a] = "";
+            tingkatkesulitan[a] = 0;
+            harihinggadeadline[a] = 0;
             status[a] = "";
-            prioritas[a] = "";
+            prioritas[a] = 0;
             teks[a] = "";
         }
     }
     
-    public static void output(String[] deskripsitugas, String[] kodematkul, String matkul, String dosen, String deadline, String nimnama, String status, double[] prioritas, String[] teks, int n) {
+    public static void output(String[] deskripsitugas, String[] kodematkul, String[] matkul, String[] dosen, String[] deadline, String[] nimnama, String[] status, double[] prioritas, String[] teks, int n) {
         int i;
 
         for (i = 0; i <= n - 1; i++) {
-            if (status[i].equals("selesai")) {
-                System.out.println("prioritas:" + toFixed(prioritas[i],2));
+            if (status[i].equals("Selesai")) {
+                System.out.println("Prioritas: " + toFixed(prioritas[i],2));
                 System.out.println(deskripsitugas[i] + "|" + kodematkul[i] + "|" + matkul[i] + "|" + dosen[i] + "|" + nimnama[i] + "|" + status[i]);
             } else {
-                if (status[i].equals("belum selesai")) {
+                if (status[i].equals("Belum Selesai")) {
                     System.out.println("Prioritas: " + toFixed(prioritas[i],2));
                     System.out.println(deskripsitugas[i] + "|" + kodematkul[i] + "|" + matkul[i] + "|" + dosen[i] + "|" + deadline[i] + "|" + nimnama[i] + "|" + status[i] + "|" + teks[i]);
                 }
@@ -148,7 +149,7 @@ public class TLAST {
         }
     }
     
-    public static void updatetaskstatsus(String[] kodematkul, String[] status, int n) {
+    public static void updatestatus(String[] kodematkul, String[] status, int n) {
         String kodenya, setatus;
         int h;
 
@@ -165,4 +166,3 @@ public class TLAST {
         return String.format("%." + digits + "f", value);
     }
 }
-
